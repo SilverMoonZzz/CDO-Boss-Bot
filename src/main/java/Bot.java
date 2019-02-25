@@ -68,15 +68,15 @@ public class Bot {
             if(now.get(Calendar.HOUR_OF_DAY) == day.get(i).spawnHour) {
                 if(now.get(Calendar.MINUTE) == day.get(i).spawnMinute) {
                     System.out.println("BOSS SPAWNING!!");
-                    sendMessage(bossRole + " " + day.get(i).name + " on " + day.get(i).region + " is spawning!");
+                    sendMessage(bossRole.getAsMention() + " " + day.get(i).name + " on " + day.get(i).region + " is spawning!");
                 } else if(now.get(Calendar.MINUTE)+15 == day.get(i).spawnMinute) {
-                    sendMessage(bossRole +" " +day.get(i).name + " on " + day.get(i).region + " is spawning in 15 minutes!");
+                    sendMessage(bossRole.getAsMention() +" " +day.get(i).name + " on " + day.get(i).region + " is spawning in 15 minutes!");
                 }
             }
             if(now.get(Calendar.HOUR_OF_DAY)+1 == day.get(i).spawnHour) {
                 if(now.get(Calendar.MINUTE)+15 == 60) {
                     if(day.get(i).spawnMinute == 0) {
-                        sendMessage(bossRole + " " +day.get(i).name + " on " + day.get(i).region + " is spawning in 15 minutes!");
+                        sendMessage(bossRole.getAsMention() + " " +day.get(i).name + " on " + day.get(i).region + " is spawning in 15 minutes!");
                     }
                 }
             }
