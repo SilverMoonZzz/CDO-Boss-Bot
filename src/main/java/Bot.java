@@ -1,10 +1,9 @@
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
-import java.time.ZoneId;
 import java.util.*;
 
 
@@ -22,6 +21,7 @@ public class Bot {
 
     public Calendar now = Calendar.getInstance(tz);
     public TextChannel bossCh;
+    public Role bossRole;
 
     private static final Bot bot = new Bot();
 
@@ -46,6 +46,8 @@ public class Bot {
         List<TextChannel> channels = jda.getTextChannelsByName("boss-bot", true);
         bot.bossCh = channels.get(0);
 
+        List<Role> boss = jda.getRolesByName("Bosses",true);
+        bot.bossRole = boss.get(0);
 
 
         bot.generateArrays();
@@ -66,15 +68,15 @@ public class Bot {
             if(now.get(Calendar.HOUR_OF_DAY) == day.get(i).spawnHour) {
                 if(now.get(Calendar.MINUTE) == day.get(i).spawnMinute) {
                     System.out.println("BOSS SPAWNING!!");
-                    sendMessage("@Bosses " + day.get(i).name + " on " + day.get(i).region + " is spawning!");
+                    sendMessage(bossRole + " " + day.get(i).name + " on " + day.get(i).region + " is spawning!");
                 } else if(now.get(Calendar.MINUTE)+15 == day.get(i).spawnMinute) {
-                    sendMessage("@Bosses " +day.get(i).name + " on " + day.get(i).region + " is spawning in 15 minutes!");
+                    sendMessage(bossRole +" " +day.get(i).name + " on " + day.get(i).region + " is spawning in 15 minutes!");
                 }
             }
             if(now.get(Calendar.HOUR_OF_DAY)+1 == day.get(i).spawnHour) {
                 if(now.get(Calendar.MINUTE)+15 == 60) {
                     if(day.get(i).spawnMinute == 0) {
-                        sendMessage("@Bosses " +day.get(i).name + " on " + day.get(i).region + " is spawning in 15 minutes!");
+                        sendMessage(bossRole + " " +day.get(i).name + " on " + day.get(i).region + " is spawning in 15 minutes!");
                     }
                 }
             }

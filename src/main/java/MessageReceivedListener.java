@@ -19,13 +19,15 @@ public class MessageReceivedListener extends ListenerAdapter {
         }
 
         if(e.getMessage().getContentRaw().startsWith("!entropy")) {
-            System.out.println("Ping received..");
             bot.sendMessage("Sucks dick!");
         }
 
         if(e.getMessage().getContentRaw().startsWith("ayy")) {
-            System.out.println("Ping received..");
             bot.sendMessage("Lmao!");
+        }
+
+        if(e.getMessage().getContentRaw().startsWith("!littleman")) {
+            bot.sendMessage("Wait... You mean Ryviance!");
         }
     }
 }
